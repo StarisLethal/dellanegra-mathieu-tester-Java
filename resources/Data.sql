@@ -8,7 +8,7 @@ AVAILABLE bool NOT NULL,
 TYPE varchar(10) NOT NULL
 );
 
-create table ticket(
+create table ticket_paid(
  ID int PRIMARY KEY AUTO_INCREMENT,
  PARKING_NUMBER int NOT NULL,
  VEHICLE_REG_NUMBER varchar(10) NOT NULL,

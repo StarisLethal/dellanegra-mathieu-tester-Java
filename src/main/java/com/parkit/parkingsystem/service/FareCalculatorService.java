@@ -22,6 +22,7 @@ public class FareCalculatorService {
 
                 if (discount){
                     ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR_DISCOUNT);
+                    System.out.println("discount applied");
                 }
                 else {
                     ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
@@ -35,6 +36,7 @@ public class FareCalculatorService {
 
                 if (discount){
                     ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR_DISCOUNT);
+                    System.out.println("Discount applied");
                 }
                 else {
                     ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);

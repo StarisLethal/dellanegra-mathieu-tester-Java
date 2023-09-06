@@ -87,5 +87,83 @@ public class TicketDAO {
         return false;
     }
 
+    public boolean getNbTicket(String vehicleRegNumber) {
+        Connection con = null;
+        try {
+            con = dataBaseConfig.getConnection();
+            PreparedStatement ps = con.prepareStatement(DBConstants.DISCOUNT_COUNT);
+            ps.setString(1, vehicleRegNumber);
+            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            try {
+                while(rs.next()) {
+                    int countTicketString = Integer.parseInt(rs.getString(1));
+                    System.out.println(countTicketString);
+                    boolean countTicket = (countTicketString > 1);
+                    return countTicket;
+                }
+            } finally {
+                rs.close();
+            }
+        }catch (Exception ex){
+            logger.error("Error find vehicle reg info",ex);
+        }finally {
+            dataBaseConfig.closeConnection(con);
+        }
+        return false;
+    }
+
+    public boolean vehicleRegAlreadyPark(String vehicleRegNumber) {
+        Connection con = null;
+        try {
+            con = dataBaseConfig.getConnection();
+            PreparedStatement ps = con.prepareStatement(DBConstants.NO_DUPE_VEHICLE_REG);
+            ps.setString(1, vehicleRegNumber);
+            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            try {
+                while(rs.next()) {
+                    int countVehicleRegString = Integer.parseInt(rs.getString(1));
+                    boolean vehicleReg = (countVehicleRegString >= 1);
+                    return vehicleReg;
+                }
+            } finally {
+                rs.close();
+            }
+        }catch (Exception ex){
+            logger.error("Error find vehicle reg info",ex);
+        }finally {
+            dataBaseConfig.closeConnection(con);
+        }
+        return false;
+    }
+    public boolean archiveTicket(int id) {
+        Connection con = null;
+        try {
+            con = dataBaseConfig.getConnection();
+            PreparedStatement ps = con.prepareStatement(DBConstants.ARCHIVE_PRINTED_TICKET);
+            ps.setInt(1, id);
+            ps.execute();
+        }catch (Exception ex){
+            logger.error("Error find vehicle reg info",ex);
+        }finally {
+            dataBaseConfig.closeConnection(con);
+        }
+        return false;
+    }
+    public boolean removeTicket(int id) {
+        Connection con = null;
+        try {
+            con = dataBaseConfig.getConnection();
+            PreparedStatement ps = con.prepareStatement(DBConstants.DELETE_PRINTED_TICKET);
+            ps.setInt(1, id);
+            ps.execute();
+        }catch (Exception ex){
+            logger.error("Error find vehicle reg info",ex);
+        }finally {
+            dataBaseConfig.closeConnection(con);
+        }
+        return false;
+    }
 
 }
