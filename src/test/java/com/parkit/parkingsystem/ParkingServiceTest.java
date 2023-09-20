@@ -32,6 +32,7 @@ public class ParkingServiceTest {
     @Mock
     private static TicketDAO ticketDAO;
 
+
     String vehicleRegNumber = "ABCDEF";
 
     @BeforeEach
