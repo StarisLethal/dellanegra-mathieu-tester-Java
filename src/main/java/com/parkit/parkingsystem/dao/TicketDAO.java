@@ -98,7 +98,6 @@ public class TicketDAO {
             try {
                 while(rs.next()) {
                     int countTicketString = Integer.parseInt(rs.getString(1));
-                    System.out.println(countTicketString);
                     boolean countTicket = (countTicketString > 1);
                     return countTicket;
                 }

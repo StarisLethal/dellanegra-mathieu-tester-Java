@@ -60,7 +60,7 @@ public class TicketDAOTest {
     @Test
     public void testGetTicket() {
         try {
-            String vehicleRegNumber = "ABC123";
+            String vehicleRegNumber = "ABCEFG";
 
             when(dataBaseConfig.getConnection()).thenReturn(connection);
             when(connection.prepareStatement(DBConstants.GET_TICKET)).thenReturn(preparedStatement);
